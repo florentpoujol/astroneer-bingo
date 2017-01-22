@@ -1,0 +1,43 @@
+astroneer bingo
+
+- script that generates a random grid of items (player must get all the items in a row, collumn of diagonal)
+- grid size is customisable
+- all texts are customisable (easily sharable via a file per locale)
+- generation is random but seeded
+- the pool of items that can appear is customizable, players can check or uncheck any item
+  - items are listed per category, it's easy to check/uncheck a whole category
+  - catagories :  resources, vehicles, modules, items, objects, planets, artifacts
+
+- the seed takes the config (grid size + items) into account
+
+- the config is saved in a cookie
+
+
+how the config seed works :
+concatene all the items ids
+devide it by the number of items
+
+itemid:number of consecutive items
+
+a folder for images
+image are named after the item
+a list of items, an array of associative arrays
+
+[
+  { strID, category },
+  { strID, category },
+]
+
+
+localization files :
+languages["langcode"] = {
+  strId: localizedString,
+  strId: localizedString,
+}
+
+
+
+params in the url
+seed=theSeed
+configSeed=theseed
+lang=languagecode

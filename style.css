@@ -1,0 +1,26 @@
+
+
+body {
+  max-width: 800px;
+  margin: auto;
+}
+
+table, tr, td {
+  border-collapse: collapse;
+}
+table {
+  /*border: 1px solid black;*/
+}
+td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+td > img {
+  margin: 0;
+}
+
+
+td.selected {
+  background: rgba(0,255,0,0.5);
+}
