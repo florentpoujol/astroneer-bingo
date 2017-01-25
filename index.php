@@ -15,11 +15,14 @@ if (file_exists($langFile))
     require_once $langFile; // overwrite the $dictionary variable
 */
 
+
+
 // init
 $seed = mt_rand();
-$configSeed = "";
+$configStr = "";
 $items = array_keys($things);
-$cardPool = []; // items that have been chosen by the user to (maybe) go on the card
+// var_dump(count($items));
+$itemPool = getItemPool(true); // items that have been chosen by the user to (maybe) go on the card.  true == use default items
 $cardItems = []; // items that have been randomly selected from the pool for the cards
 $rows = 5;
 $cols = 5;
@@ -36,6 +39,20 @@ for ($i=0; $i < count($items); $i++) {
     $itemsPerCategory[$category][] = $itemName;
 }
 
+
+
+// case
+/*
+- paged is just loaded : get defaut items, new seed
+
+*/
+/*
+- page is posted with no seed : get config + new seed
+- page is posted with just random seed : get config from post, process seed
+- page is posted with just config seed : process config seed, new seed
+- page is posted with just random+config seed : process both seeds
+*/
+
 // process POST
 if (isset($_POST) && isset($_POST["generate"])) {
     // card
@@ -44,86 +61,36 @@ if (isset($_POST) && isset($_POST["generate"])) {
     $cardSize = $rows * $cols;
 
     // seed
-    $seed = trim($_POST["seed"]);
-    if ($seed === "")
-        $seed = mt_rand();
-    else {
-        // look for a config seed
-        $result = explode("/", $seed);
-        $_seed = $result[0]; // can be a numerical value other than zero (the random seed) or a non numerical value (just the config string)
-        if (is_int($_seed)) {
+    /*
+    $_POST["seed"] can have these values :
+    - "" empty string
+    - 132456789   random seed
+    - 132465789/abcdef   random seed + config string
+    - abcdef    config string
+    */
+    $_seed = trim($_POST["seed"]);
+    if ($_seed !== "") {
+        $seeds = explode("/", $_seed);
+        $_seed = $seeds[0]; // can be a numerical value other than zero (the random seed) or a non numerical value (just the config string)
+        if (is_numeric($_seed)) {
             $_seed = (int)$_seed;
             if ($_seed !== 0)
                 $seed = $_seed;
         }
-        else {
-            $result[1] = $_seed; // suppose config seed
+        else { // configStr
+            $seeds[1] = $_seed;
         }
 
-        $configSeed = isset($result[1]) ? $result[1] : "";
+        $configStr = isset($seeds[1]) ? $seeds[1] : "";
+        // if some selected elements are changed in the form the config string must be removed from the seed filed, otherwise the modification will never be taken into account
     }
 
-    // items
-    foreach ($things as $itemName => $item) {
-        if (isset($_POST[$itemName]))
-            $cardPool[] = $itemName;
-    }
-
-    if (count($cardPool) >= $cardSize) {
-
-        // generate card
-        mt_srand($seed);
-        mt_rand(); mt_rand(); mt_rand();
-
-        // an array with the items
-        // every time with generate a random number between 0 and the list length-1
-        // and we remove this item from the list
-        // and add it to a new item
-
-        for ($i=0; $i<$cardSize; $i++) {
-            $rand = mt_rand(0, count($cardPool)-1);
-            list($item) = array_splice($cardPool, $rand, 1);
-            $cardItems[] = $item;
-        }
-    }
-    else
-        echo "Error: not enough items have been selected !";
+    $itemPool = getItemPool($configStr); // get selected items from the form ($_POST);
 }
-else {
-    // form hasn't been validated
-    // fill the POST var with the item that must be selected by default
-    foreach ($things as $itemName => $item) {
-        // var_dump($item);
-        if ($item["selected_by_default"] === true)
-            $_POST[$itemName] = "";
-    }
 
-    // generate base on the random seed
-    foreach ($things as $itemName => $item) {
-        if (isset($_POST[$itemName]))
-            $cardPool[] = $itemName;
-    }
+$configStr = getConfigStr($itemPool);
 
-    if (count($cardPool) >= $cardSize) {
-
-        // generate card
-        mt_srand($seed);
-        mt_rand(); mt_rand(); mt_rand();
-
-        // an array with the items
-        // every time with generate a random number between 0 and the list length-1
-        // and we remove this item from the list
-        // and add it to a new item
-
-        for ($i=0; $i<$cardSize; $i++) {
-            $rand = mt_rand(0, count($cardPool)-1);
-            list($item) = array_splice($cardPool, $rand, 1);
-            $cardItems[] = $item;
-        }
-    }
-    else
-        echo "Error: not enough items have been selected !";
-}
+$cardItems = generateCardItems($itemPool, $cardSize, $seed);
 
 ?>
 <!DOCTYPE html>
@@ -191,11 +158,7 @@ foreach ($itemsPerCategory as $cat => $catItems) {
             else
                 $url = $wikiCDNUrl."/".ltrim($url, "/");
 
-            // temp
-            // if (isset($_POST[$itemName]) == false)
-            //     $_POST[$itemName] = "";
-            // /temp
-            $checked = isset($_POST[$itemName]) ? "checked" : "";
+            $checked = in_array($itemName, $itemPool) ? "checked" : "";
             $selected = "";
             if ($checked) $selected = "class='selected'";
             echo "<td $selected><label> <img src='$url' title='$itemName' width='100px' height='100px'> <input type='checkbox' name='$itemName' $checked></label></td>";
@@ -211,7 +174,7 @@ foreach ($itemsPerCategory as $cat => $catItems) {
         <fieldset>
             <legend>Seed</legend>
 
-            <label>Seed : <input type="number" name="seed" value="<?php echo $seed; ?>" placeholder=""></label> Leave blank for random seed. <br>
+            <label>Seed : <input type="text" name="seed" value="<?php echo $seed."/".$configStr; ?>" placeholder=""></label> Leave blank for random seed. <br>
         </fieldset>
         <br>
         <input type="submit" name="generate" value="Create bingo card"> <br>
@@ -219,23 +182,20 @@ foreach ($itemsPerCategory as $cat => $catItems) {
 
     <br>
     <hr>
-    <h2>Card</h2>
 
     <section>
-        Seed : <?php echo $seed; ?>
-    <table id="card">
-<?php
-for ($rowI=1; $rowI<=$rows; $rowI++) {
-    echo "<tr>";
-    for ($colI=1; $colI<=$cols; $colI++) {
-        echo "<td>";
+        <h2>Card</h2>
 
+        <table id="card">
+<?php
+for ($rowI = 1; $rowI <= $rows; $rowI++) {
+    echo "<tr>";
+    for ($colI = 1; $colI <= $cols; $colI++) {
+        echo "<td>";
+        // var_dump($cardItems);
         if (count($cardItems) > 0) {
             $itemName = array_shift($cardItems);
-            // var_dump($cardItems);
-            // var_dump($itemName);
             $item = $things[$itemName];
-            // var_dump($item);
 
             $url = $item["url"];
             if ($url === "")
@@ -249,7 +209,7 @@ for ($rowI=1; $rowI<=$rows; $rowI++) {
                     $title .= " or ";
                 $title .= $value;
             }
-            // $action = "do something";
+
             echo "<img src='$url' title='$title' alt='$itemName' width='100px' height='100px'>";
         }
 
@@ -259,6 +219,9 @@ for ($rowI=1; $rowI<=$rows; $rowI++) {
 }
 ?>
         </table>
+        <br>
+        Seed : <strong><?php echo $seed."/".$configStr; ?></strong> <br>
+        <br>
         <section id="timer">
             <span id="display">00:00</span>
 
