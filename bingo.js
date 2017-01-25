@@ -70,3 +70,55 @@ for (var i=0; i<tds.length; i++) {
     console.warn(td);*/
 }
 
+
+
+// timer
+var display = document.querySelector("#timer #display");
+
+var time = { min: 0, sec: 0, timeoutId: 0 };
+
+var updateTimer = function() {
+  time.sec++;
+
+  if (time.sec > 59) {
+    time.min++;
+    time.sec = 0;
+  }
+
+  var min = time.min+"";
+  if (min.length === 1)
+    min = "0"+min;
+
+  var sec = time.sec+"";
+  if (sec.length === 1)
+    sec = "0"+sec;
+
+  display.innerText = min+":"+sec;
+}
+
+var playButton = document.querySelector("#play");
+
+playButton.addEventListener("click", function(event) {
+  if (event.target.className === "play") {
+    event.target.className = "pause";
+    event.target.innerText = "Pause";
+    time.timeoutId = setInterval(updateTimer, 1000);
+  }
+  else if (event.target.className === "pause") {
+    event.target.className = "play";
+    event.target.innerText = "Play";
+    clearInterval(time.timeoutId);
+  }
+});
+
+var stopButton = document.querySelector("#stop");
+
+stopButton.addEventListener("click", function(event) {
+  clearInterval(time.timeoutId);
+  time.min = 0;
+  time.sec = -1;
+  time.timeoutId = 0;
+  playButton.className = "play";
+  playButton.innerText = "Play";
+  updateTimer();
+});

@@ -259,6 +259,15 @@ for ($rowI=1; $rowI<=$rows; $rowI++) {
 }
 ?>
         </table>
+        <section id="timer">
+            <span id="display">00:00</span>
+
+            <span id="controls">
+                <button id="play" class="play">Play</button>
+                <button id="stop">Stop</button>
+            </span>
+        </section>
+        
     </section>
 
     <br>

@@ -22,5 +22,14 @@ td > img {
 
 
 td.selected {
-  background: rgba(0,255,0,0.5);
+  background: rgba(0,255,0,0.8);
+}
+
+#timer #display {
+  font-size: 3em;
+  margin-right: 20px;
+}
+
+#timer button {
+  margin-right: 10px;
 }
