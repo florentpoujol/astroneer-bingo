@@ -30,31 +30,37 @@ function getItemPool($configStr = "") {
     $itemPool = [];
 
     if (is_string($configStr) && strlen($configStr) > 0) {
-        var_dump($configStr);
-        // ie : +10-2+2-6+44-9+1-3+2-4+5-6+1-5
-        $configStr = preg_replace_callback(
-            "/(\+|-)([0-9]?)/",
-            function($matches) {
-                $sign = $matches[1] === "+" ? "1" : "0";
-                $repeats = isset($matches[2]) ? $matches[2] : "1";
-                var_dump($repeats);
-                return str_repeat($sign, (int)$repeats);
-            },
-            $configStr
-        );
+        // $configStr is a base36 string
+        // ie: e13wu1ofc0wjqwgc70jyf0u8
 
-        // by now, $configStr is ie :
-        //1111111001100000011111111111111111111111111111111110000000001000110000111110000001000
-        // var_dump($configStr);
+        $chunks = str_split($configStr, 10); // a chunk of 10 chars in base36 will give 50 chars in base 2
+        $configStr = "";
+        foreach($chunks as $chunk) {
+            $bin = base_convert($chunk, 36, 2);
+            $a = str_split($bin);
+            array_shift($a);
+            $bin = implode($a);
+            // do not use ltrim($bin, "1") because it will remove all the leading ones
+            $configStr .= $bin; // remove the added leading 1
+        }
+
+        // by now, $configStr is a long "binary" string
+        // ie: 1111111001100000011111111111110000000100011000011111000100
 
         $configArray = str_split($configStr);
         $itemNamesById = getItemNamesById();
-        for ($i = 0; $i < count($itemNamesById) ; $i++) {
-            $itemName = $itemNamesById[$i];
-            if ($configArray[0] === "1")
-                $itemPool[] = $itemName;
+        // loop throught item names in ordder and if they are selected "1" in the configStr, add them to the pol
+        foreach ($itemNamesById as $itemName) {
+
+            if (isset($configArray[0])) {
+                if ($configArray[0] === "1")
+                    $itemPool[] = $itemName;
+            }
+            else
+                break;
             array_shift($configArray);
         }
+        var_dump($itemPool);
     }
     else {
         foreach ($things as $itemName => $item) {
@@ -77,40 +83,22 @@ function getItemPool($configStr = "") {
 function getConfigStr($itemPool) {
     $configStr = "";
     $itemNamesById = getItemNamesById();
-    for ($i = 0; $i < count($itemNamesById) ; $i++) {
-        $itemName = $itemNamesById[$i];
-        $str = (int)in_array($itemName, $itemPool);
-        $configStr .= $str; // "0" or "1"
+    foreach ($itemNamesById as $itemName) {
+        $configStr .= (int)in_array($itemName, $itemPool); // "0" or "1"
     }
 
-    // $configStr is something like :
-    //11111011001100000011111111111111111111111111111111110000000001000110000111110000001000
-var_dump($configStr);
-    $configArray = str_split($configStr);
-    $sign = ($configArray[0] === "1") ? "+" : "-";
-    $seriesSize = 1;
+
+    // $configStr is now a big "binary" string
+    // ie: 1111111001100000011111111111110000000100011000011111000100
+
+    $chunks = str_split($configStr, 49);
     $configStr = "";
-
-    for ($i=1; $i < count($configArray); $i++) {
-        $char = $configArray[$i];
-        if ( ($sign === "+" && $char === "1") || ($sign === "-" && $char === "0")) {
-            $seriesSize++;
-        }
-        elseif (($sign === "+" && $char === "0") || ($sign === "-" && $char === "1")) {
-            if ($seriesSize === 1)
-                $seriesSize = "";
-            $configStr .= $sign.$seriesSize;
-            $sign = ($char === "1") ? "+" : "-";
-            $seriesSize = 1;
-        }
+    foreach ($chunks as $chunk) {
+        $chunk = "1".$chunk; // always add 1 at the beginning, because base_convert() ignores leading 0s
+        $shortChunk = base_convert($chunk, 2, 36);
+        $configStr .= $shortChunk;
+        // note : there is no separation between the converted chunks, it supose that they are all 10 chars long, except maybe the last one
     }
-    if ($seriesSize === 1)
-        $seriesSize = "";
-    $configStr .= $sign.$seriesSize;
-
-    // now configStr looks like
-    // -2+7-+-2+6-+2-+2-+2-+2-2+4-+3-2+2-2+2-2+4-3+2-2+-+-5+2-3+4-6+-2+-3
-
     return $configStr;
 }
 

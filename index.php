@@ -40,7 +40,6 @@ for ($i=0; $i < count($items); $i++) {
 }
 
 
-
 // case
 /*
 - paged is just loaded : get defaut items, new seed
@@ -82,6 +81,7 @@ if (isset($_POST) && isset($_POST["generate"])) {
         }
 
         $configStr = isset($seeds[1]) ? $seeds[1] : "";
+        echo "<br>confgiStr from POST : ".$configStr;
         // if some selected elements are changed in the form the config string must be removed from the seed filed, otherwise the modification will never be taken into account
     }
 
@@ -174,7 +174,7 @@ foreach ($itemsPerCategory as $cat => $catItems) {
         <fieldset>
             <legend>Seed</legend>
 
-            <label>Seed : <input type="text" name="seed" value="<?php echo $seed."/".$configStr; ?>" placeholder=""></label> Leave blank for random seed. <br>
+            <label>Seed : <input type="text" name="seed" value="<?php echo $seed."/".$configStr; ?>" placeholder="" size="30"></label> Leave blank for random seed. <br>
         </fieldset>
         <br>
         <input type="submit" name="generate" value="Create bingo card"> <br>

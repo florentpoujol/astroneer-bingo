@@ -24,6 +24,9 @@ td > img {
 td.selected {
   background: rgba(0,255,0,0.8);
 }
+td.selected img {
+  opacity: 0.6;
+}
 
 #timer #display {
   font-size: 3em;
