@@ -12,9 +12,14 @@ var links = document.getElementsByClassName("show_link");
 
 for (var i=0; i < links.length; i++) {
   var link = links[i];
+  link.sign = link.querySelector("span");
 
   listenerFunc = function(event) {
-    event.preventDefault();
+    // event.preventDefault();
+    if (event.target.sign.innerText === "+")
+      event.target.sign.innerText = "-";
+    else
+      event.target.sign.innerText = "+";
     var sectionName = event.target.getAttribute("showtarget");
     var section = document.getElementById(sectionName);
     toggleShowSection(section);
@@ -25,10 +30,11 @@ for (var i=0; i < links.length; i++) {
 
 
 // toggle green background of the items when selected/unselected
-var checkboxes = document.querySelectorAll("#config_section input[type=checkbox]");
+var checkboxes = document.querySelectorAll("#configuration input[type=checkbox]");
 
 for (var i=0; i<checkboxes.length; i++) {
   var box = checkboxes[i];
+  box.className += " hidden-checkbox";
 
   var toggleSelected = function(event) {
     // console.log()

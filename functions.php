@@ -23,7 +23,7 @@ function getItemNamesById() {
 argument values :
 - true > use default itemPpol
 - no argument or "" > use values from $_POST
-- non-empty string > process the config seed
+- non-empty string > process the config string
 */
 function getItemPool($configStr = "") {
     global $things;
@@ -60,7 +60,6 @@ function getItemPool($configStr = "") {
                 break;
             array_shift($configArray);
         }
-        var_dump($itemPool);
     }
     else {
         foreach ($things as $itemName => $item) {
@@ -82,11 +81,11 @@ function getItemPool($configStr = "") {
 
 function getConfigStr($itemPool) {
     $configStr = "";
+
     $itemNamesById = getItemNamesById();
     foreach ($itemNamesById as $itemName) {
         $configStr .= (int)in_array($itemName, $itemPool); // "0" or "1"
     }
-
 
     // $configStr is now a big "binary" string
     // ie: 1111111001100000011111111111110000000100011000011111000100
@@ -99,6 +98,7 @@ function getConfigStr($itemPool) {
         $configStr .= $shortChunk;
         // note : there is no separation between the converted chunks, it supose that they are all 10 chars long, except maybe the last one
     }
+
     return $configStr;
 }
 
@@ -116,6 +116,6 @@ function generateCardItems($itemPool, $cardSize, $seed) {
         }
     }
     else
-        echo "Error: not enough items have been selected !";
+        throw new Exception("Error: not enough items in the item pool, something must be wrong your seed");
     return $cardItems;
 }

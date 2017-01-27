@@ -1,8 +1,12 @@
 
 
 body {
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
+  /*margin-top: 400px;*/
+  background: url("images/big_composite_bg_white.jpg") center top no-repeat fixed;
+  font-size: 1.1em;
+  font-family: Calibri, Arial, serif;
 }
 
 table, tr, td {
@@ -14,6 +18,7 @@ table {
 td {
   border: 1px solid black;
   padding: 10px;
+  background: white;
 }
 
 td > img {
@@ -21,11 +26,12 @@ td > img {
 }
 
 
-td.selected {
-  background: rgba(0,255,0,0.8);
+
+#card td.selected {
+  background: rgba(40,230,40,1);
 }
-td.selected img {
-  opacity: 0.6;
+#card td.selected img {
+  opacity: 0.5;
 }
 
 #timer #display {
@@ -35,4 +41,35 @@ td.selected img {
 
 #timer button {
   margin-right: 10px;
+}
+
+
+#configuration td.selected {
+  background: rgba(40,230,40,0.9);
+}
+
+fieldset {
+  border: 1px solid grey;
+  border: 0;
+  border-radius: 5px;
+}
+
+#configuration table {
+  border: 0;
+}
+#configuration td {
+  border: 1px solid grey;
+}
+
+#configuration .show_link:hover {
+  text-decoration: underline;
+}
+
+#configuration .hidden-checkbox {
+  display: none;
+}
+
+.show_link span {
+  
+
 }

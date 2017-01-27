@@ -196,14 +196,14 @@ $things = [
   ],
   "fuel_condenser" => [
     "id" => 27,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "/3/39/FuelCondenser.png",
     "category" => "buildings",
     "selected_by_default" => true,
   ],
   "trade_platform" => [
     "id" => 28,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "/f/f0/TradePlatform.png",
     "category" => "buildings",
     "selected_by_default" => true,
@@ -261,14 +261,14 @@ $things = [
   ],
   "filters" => [
     "id" => 36,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "",
     "category" => "backpack_items",
     "selected_by_default" => true,
   ],
   "power_cells" => [
     "id" => 37,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "",
     "category" => "backpack_items",
     "selected_by_default" => true,
@@ -312,28 +312,28 @@ $things = [
   ],
   "generator" => [
     "id" => 43,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "/c/c2/Generator.png",
     "category" => "printer_items",
     "selected_by_default" => true,
   ],
   "habitat" => [
     "id" => 44,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "/4/49/Habitat.jpg",
     "category" => "printer_items",
     "selected_by_default" => true,
   ],
   "winch" => [
     "id" => 45,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "/3/31/Winch.png",
     "category" => "printer_items",
     "selected_by_default" => true,
   ],
   "drill_head" => [
     "id" => 46,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "",
     "category" => "printer_items",
     "selected_by_default" => true,
@@ -349,21 +349,21 @@ $things = [
   ],
   "vehicle_storage" => [
     "id" => 48,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "",
     "category" => "vehicle_items",
     "selected_by_default" => true,
   ],
   "3_seat" => [
     "id" => 49,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "",
     "category" => "vehicle_items",
     "selected_by_default" => true,
   ],
   "crane" => [
     "id" => 50,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "",
     "category" => "vehicle_items",
     "selected_by_default" => true,
@@ -386,14 +386,14 @@ $things = [
   ],
   "spaceship" => [
     "id" => 53,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "/2/21/Spaceship.png",
     "category" => "vehicles",
     "selected_by_default" => true,
   ],
   "truck" => [
     "id" => 54,
-    "actions" => ["print", "research_blueprint"],
+    "actions" => ["print", "get_blueprint"],
     "url" => "/3/37/AstroneerTruck.jpg",
     "category" => "vehicles",
     "selected_by_default" => true,
@@ -430,137 +430,137 @@ $things = [
   ],
 
   // research items
-  "research_chest_sphere_red_hair" => [
+  "research_item_sphere_red_hair" => [
     "id" => 59,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/e/e7/Research_red_ball_hair.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_sphere_red_green" => [
+  "research_item_sphere_red_green" => [
     "id" => 60,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/7/7f/Research_green_ball_hair.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_barbecue_white_rounded_top" => [
+  "research_item_barbecue_white_rounded_top" => [
     "id" => 61,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/c/c7/Space-research.PNG",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_barbecue_white_flat_top" => [
+  "research_item_barbecue_white_flat_top" => [
     "id" => 62,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/2/28/Research_flat_barbecue.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_barbecue_cylinder_blue" => [
+  "research_item_barbecue_cylinder_blue" => [
     "id" => 63,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/c/c5/Research_Canister.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_barbecue_cube_lego" => [
+  "research_item_barbecue_cube_lego" => [
     "id" => 64,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/b/bb/Research_white_lego.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_cube_yellow" => [
+  "research_item_cube_yellow" => [
     "id" => 65,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/4/4f/Research_yellow_cubiod.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_cube_orange" => [
+  "research_item_cube_orange" => [
     "id" => 66,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/2/2f/Research_orange_cubiod.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_cube_white" => [
+  "research_item_cube_white" => [
     "id" => 67,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/a/aa/Research_gray_cube.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_cube_green_orange_cristals" => [
+  "research_item_cube_green_orange_cristals" => [
     "id" => 68,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "0/03/Research_green_orange_crystal.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_cube_cyan_red_green_cristals" => [
+  "research_item_cube_cyan_red_green_cristals" => [
     "id" => 69,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/3/39/Research_cyan_red_crystal.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_blob_pink" => [
+  "research_item_blob_pink" => [
     "id" => 70,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/e/e9/Research_pink_blob.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_blob_cyan" => [
+  "research_item_blob_cyan" => [
     "id" => 71,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/8/80/Research_blue-green_blob.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_sphere_green_blue_cristals" => [
+  "research_item_sphere_green_blue_cristals" => [
     "id" => 72,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/e/e0/Research_round_blue_crystal.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_sphere_purple_red_cristals" => [
+  "research_item_sphere_purple_red_cristals" => [
     "id" => 73,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "f/f4/Research_dark_purple_round_red_crystal.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_sphere_green_bumped" => [
+  "research_item_sphere_green_bumped" => [
     "id" => 74,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/4/4d/Research_green_bumped_sphere.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => true,
   ],
-  "research_chest_sphere_grey_bumped_blue_strip" => [
+  "research_item_sphere_grey_bumped_blue_strip" => [
     "id" => 75,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/1/1e/Research_grey_bumped_sphere.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_cuboid_red_green_part" => [
+  "research_item_cuboid_red_green_part" => [
     "id" => 76,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/4/4c/Research_Pod.png",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_chest_cuboid_blue_orange_part" => [
+  "research_item_cuboid_blue_orange_part" => [
     "id" => 77,
-    "actions" => ["research_chest"],
+    "actions" => ["do_research"],
     "url" => "/b/be/Research_blue_red_bits.jpg",
-    "category" => "research_chests",
+    "category" => "research_items",
     "selected_by_default" => false,
   ],
 
@@ -583,6 +583,13 @@ $things = [
     "id" => 80,
     "actions" => ["kill", "get_killed"],
     "url" => "",
+    "category" => "hazards",
+    "selected_by_default" => true,
+  ],
+  "spiker_seed" => [
+    "id" => 102,
+    "actions" => ["kill", "get_killed"],
+    "url" => "/2/2e/Seed.png",
     "category" => "hazards",
     "selected_by_default" => true,
   ],
@@ -739,24 +746,6 @@ $things = [
   ],
 ];
 
-$actions = [
-  "collect_a_stack",
-  "collect_from_fountain",
-  "smelt",
-  "go_to_planet",
-  "print",
-  "research_chest",
-  "research_blueprint",
-  "get_killed",
-  "kill",
-  "find",
-];
+// next id: 103
 
 $wikiCDNUrl = "https://hydra-media.cursecdn.com/astroneer.gamepedia.com";
-
-
-/*$data = [
-  [ "strId" => "compound" ],
-  [ "strId" => "resin" ],
-];*/
-

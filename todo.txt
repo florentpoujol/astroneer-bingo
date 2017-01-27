@@ -41,3 +41,19 @@ params in the url
 seed=theSeed
 configSeed=theseed
 lang=languagecode
+
+
+
+
+
+// change language based on user input (if any)
+/*$acceptedLanguages = ["en", "fr"];
+$currentLanguage = isset($_GET["lang"]) ? $_GET["lang"] : "en";
+if (in_array($currentLanguage, $acceptedLanguages) === false)
+    $currentLanguage = "en";
+
+$dictionary = array();
+$langFile = "locales/$currentLanguage.php";
+if (file_exists($langFile))
+    require_once $langFile; // overwrite the $dictionary variable
+*/
