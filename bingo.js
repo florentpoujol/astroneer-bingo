@@ -106,8 +106,7 @@ for (var i=0; i < links.length; i++) {
     toggleShowSection(section);
   };
   link.addEventListener("click", listenerFunc);
-  if (i > 0)
-    listenerFunc({ target: link, preventDefault: ()=>{} }); // hide the section on page load
+  listenerFunc({ target: link, preventDefault: ()=>{} }); // hide the section on page load
 }
 
 

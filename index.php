@@ -23,6 +23,13 @@ for ($i=0; $i < count($items); $i++) {
     $itemsPerCategory[$category][] = $itemName;
 }
 
+
+// seed may be transmitted through the URL
+if (isset($_GET["seed"])) {
+    $_POST["generate_from_seed"] = "";
+    $_POST["seed"] = $_GET["seed"];
+}
+
 // process POST
 if (isset($_POST["generate_from_seed"])) {
     $fullSeed = trim($_POST["seed"]);

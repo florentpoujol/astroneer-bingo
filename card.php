@@ -5,6 +5,7 @@
 
         <p>
             Seed for this card: <strong><?php echo $fullSeed; ?></strong><br>
+            Share this seed or directly <strong><a href="http://astroneerbingo.space/index.php?seed=<?php echo $fullSeed; ?>">this link</a></strong> for others to play the same card !
         </p>
 
         <p>
