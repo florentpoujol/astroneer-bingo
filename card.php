@@ -4,13 +4,13 @@
         <h2>Card</h2>
 
         <p>
-            Seed for this card: <strong><?php echo $fullSeed; ?></strong> <br>
+            Seed for this card: <strong><?php echo $fullSeed; ?></strong><br>
         </p>
 
         <p>
-            Or enter your own seed :
             <form target="" method="post">
-                <input type="text" name="seed" placeholder="Enter something like 123456789/abcdefghijklmnop" size="40" required > <br> <!-- pattern="[0-9]{1,}/[a-z0-9]{1,}" -->
+                Or enter your own seed: 
+                <input type="text" name="seed" placeholder="Enter something like 123456789/abcdefghijklmnop" size="40" required >  <!-- pattern="[0-9]{1,}/[a-z0-9]{1,}" -->
                 <input type="submit" name="generate_from_seed" value="Build card from this seed">
             </form>
         </p>
@@ -48,6 +48,7 @@ for ($rowI = 1; $rowI <= $rows; $rowI++) {
 }
 ?>
         </table>
+        You can click on items to mark them as completed and use the timer below to track time.
         <br>
         <section id="timer">
             <span id="display">00:00</span>

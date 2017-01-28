@@ -116,6 +116,6 @@ function generateCardItems($itemPool, $cardSize, $seed) {
         }
     }
     else
-        throw new Exception("Error: not enough items in the item pool, something must be wrong your seed");
+        throw new Exception("Error: not enough items in the item pool, something must be wrong your seed.");
     return $cardItems;
 }

@@ -1,13 +1,14 @@
     <section>
         <hr>
 
-        <h2>Configuration</h2>
+        <h2>Item Pool</h2>
 
         <p>Selected items below compose the pool of items that may appear on the generated cards. They are green when selected, click on them to select/unselect</p>
 
         <form target="" method="post" id="configuration">
 
-            <input type="submit" name="generate_from_config" value="Generate a new random card with this configuration">
+            <input type="submit" name="generate_from_config" value="Generate a new random card with this pool"> <br>
+            <br>
 
             <!-- <h3 class="show_link" showtarget="card_size">Card size <span>-</span></h3>
 
@@ -19,7 +20,7 @@
 <?php
 
 foreach ($itemsPerCategory as $cat => $catItems) {
-    echo "<h3 class='show_link'  showtarget='$cat'>$cat <span>-</span></h3>
+    echo "<div class='item_cat'><h3 class='show_link'  showtarget='$cat'>$cat <span>-</span></h3>
     <table id='$cat'>";
 
     $nbColumns = 7;
@@ -50,7 +51,7 @@ foreach ($itemsPerCategory as $cat => $catItems) {
         echo "</tr>";
     }
 
-    echo "</table>";
+    echo "</table></div>";
 }
 ?>
         </form>

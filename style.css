@@ -3,7 +3,6 @@
 body {
   max-width: 900px;
   margin: auto;
-  /*margin-top: 400px;*/
   background: url("images/big_composite_bg_white.jpg") center top no-repeat fixed;
   font-size: 1.1em;
   font-family: Calibri, Arial, serif;
@@ -12,20 +11,16 @@ body {
 table, tr, td {
   border-collapse: collapse;
 }
-table {
-  /*border: 1px solid black;*/
-}
 td {
   border: 1px solid black;
   padding: 10px;
   background: white;
 }
-
-td > img {
+td img {
   margin: 0;
+  padding: 0;
+  border: 0;
 }
-
-
 
 #card td.selected {
   background: rgba(40,230,40,1);
@@ -69,7 +64,15 @@ fieldset {
   display: none;
 }
 
-.show_link span {
-  
+.item_cat {
+  background: rgba(255,255,255,0.5);
+  /*border: 1px solid black;*/
+  /*border-radius: 10px;*/
+  margin-top: 5px;
+  padding: 5px;
+}
 
+.item_cat h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
