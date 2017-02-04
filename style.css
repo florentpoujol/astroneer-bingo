@@ -1,35 +1,42 @@
 
-
 body {
-  max-width: 900px;
-  margin: auto;
-  padding: 10px;
   background: url("images/big_composite_bg_white.jpg") center top no-repeat fixed;
-  font-size: 1.1em;
-  font-family: Calibri, Arial, serif;
 }
 
-table, tr, td {
-  border-collapse: collapse;
+
+#build_card_text {
+  margin-left: 140px;
 }
-td {
-  border: 1px solid black;
+#card td {
+  border: 1px solid rgb(50,50,50);
   padding: 10px;
+  padding-bottom: 0px;
   background: white;
 }
-td img {
+#card td img {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
 #card td.selected {
-  background: rgba(40,230,40,1);
+  background: rgb(70,230,70);
 }
 #card td.selected img {
   opacity: 0.5;
 }
 
+#card td span {
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
+}
+
+#timer.jumbotron {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px;
+}
 #timer #display {
   font-size: 3em;
   margin-right: 20px;
@@ -37,46 +44,59 @@ td img {
 
 #timer button {
   margin-right: 10px;
+  position: relative;
+  top: -10px;
 }
 
-#build_card_text {
-  margin-left: 140px;
+#timer #bingo-time {
+  display: none;
+  font-size: 3em;
 }
 
-#configuration td.selected {
-  background: rgba(40,230,40,0.9);
+
+
+
+#configuration .flex-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-fieldset {
-  border: 1px solid grey;
-  border: 0;
-  border-radius: 5px;
+#configuration .panel {
+  margin-bottom: 10px;
 }
 
-#configuration table {
-  border: 0;
-}
-#configuration td {
-  border: 1px solid grey;
-}
-
-#configuration .show_link:hover {
+#configuration .panel-heading:hover {
   text-decoration: underline;
 }
 
-#configuration .hidden-checkbox {
-  display: none;
+
+
+#configuration .config-item {
+  padding: 8px;
+  padding-bottom: 0px;
+  margin: 4px;
+  background: rgb(230,230,230);
+}
+#configuration .config-item.selected {
+  /*background: rgba(40,230,40,0.9);*/
+  background: rgb(70,230,70);
+  /*background: rgba(0,150,255,0.7);*/
+  border-shadow
 }
 
-.item_cat {
-  background: rgba(255,255,255,0.5);
-  /*border: 1px solid black;*/
-  /*border-radius: 10px;*/
-  margin-top: 5px;
-  padding: 5px;
+#configuration input[type=checkbox] {
+  position: relative;
+  top: -27px;
+  left: 8px;
+  transform: scale(1.5);
 }
 
-.item_cat h3 {
-  margin-top: 5px;
-  margin-bottom: 5px;
+#configuration label span {
+  position: relative;
+  left: -17px;
+  margin-right: -17px;
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
 }
+

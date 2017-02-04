@@ -1,14 +1,18 @@
-    <section>
-        <hr>
+    <hr>
 
+    <section class="row">
         <h2>Item Pool</h2>
 
         <p>Selected items below compose the pool of items that may appear on the generated cards. They are green when selected, click on them to select/unselect</p>
 
         <form target="" method="post" id="configuration">
 
-            <input type="submit" name="generate_from_config" value="Generate a new random card with this pool"> <br>
+            <input type="submit" name="generate_from_config" class="btn btn-primary" value="Generate a new random card with this pool"> <br>
             <br>
+            <p>
+                Number of selected items in the pool: <strong><span id="item-pool-count"></span></strong><br>
+                Must be 25 or more.
+            </p>
 
             <!-- <h3 class="show_link" showtarget="card_size">Card size <span>-</span></h3>
 
@@ -18,41 +22,42 @@
             </div> -->
 
 <?php
+foreach ($itemsByCategory as $cat => $catItems) {
+?>
+            <div class='panel panel-default'>
+                <div class='panel-heading' data-toggle='collapse' data-target='#<?php echo $cat; ?>'><?php echo $cat; ?> <span class="glyphicon glyphicon-plus"></span></div>
 
-foreach ($itemsPerCategory as $cat => $catItems) {
-    echo "<div class='item_cat'><h3 class='show_link'  showtarget='$cat'>$cat <span>-</span></h3>
-    <table id='$cat'>";
+                <div id="<?php echo $cat; ?>" class="collapse panel-body">
+                    <div class="flex-container">
+<?php
+    foreach ($catItems as $itemId => $itemName) {
+        $item = $things[$itemName];
 
-    $nbColumns = 7;
-    $nbRows = ceil(count($catItems) / $nbColumns);
-    $itemId = 0;
-    for ($i=0; $i < $nbRows; $i++) {
-        echo "<tr>";
+        $url = $item["url"];
+        if ($url === "")
+            $url = "images/$itemName.jpg";
+        else
+            $url = $wikiCDNUrl."/".ltrim($url, "/");
 
-        for ($j=0; $j < $nbColumns; $j++) {
-            if ($itemId >= count($catItems))
-                break;
-
-            $itemName = $catItems[$itemId];
-            $itemId++;
-            $item = $things[$itemName];
-
-            $url = $item["url"];
-            if ($url === "")
-                $url = "images/$itemName.jpg";
-            else
-                $url = $wikiCDNUrl."/".ltrim($url, "/");
-
-            $checked = in_array($itemName, $itemPool) ? "checked" : "";
-            $selected = "";
-            if ($checked) $selected = "class='selected'";
-            echo "<td $selected><label> <img src='$url' title='$itemName' width='100px' height='100px'> <input type='checkbox' name='$itemName' $checked></label></td>";
-        }
-        echo "</tr>";
+        $checked = in_array($itemName, $itemPool) ? "checked" : "";
+        $selected = "";
+        if ($checked) $selected = "selected";
+?>
+                        <div class="config-item <?php echo $selected; ?>">
+                            <label>
+                                <img src='<?php echo $url; ?>' title='<?php echo $itemName; ?>' width='100px' height='100px'><br>
+                                <input type='checkbox' name='<?php echo $itemName; ?>' <?php echo $checked; ?>>
+                                <span><?php echo substr($itemName, 0, 20); ?></span>
+                            </label>
+                        </div>
+<?php
     }
-
-    echo "</table></div>";
-}
+?>
+                    </div> <!-- end flex-container -->
+                </div> <!-- end panel-body -->
+            </div> <!-- end panel -->
+<?php
+} // end foreach itemsByCategory
 ?>
         </form>
     </section>

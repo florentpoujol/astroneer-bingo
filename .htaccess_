@@ -1,9 +1,0 @@
-RewriteEngine On
-
-# redirect to non-www
-RewriteCond %{HTTP_HOST} ^www\.astroneerbingo\.space$ [NC]
-RewriteRule ^(.*)$ https://astroneerbingo.space/$1 [L,R=301]
-
-# redirect to HTTPS
-RewriteCond %{HTTPS} !on
-RewriteRule (.*) https://astroneerbingo.space/$1 [QSA,L,R=301]

@@ -1,0 +1,23 @@
+RewriteEngine On
+
+# redirect to non-www
+RewriteCond %{HTTP_HOST} ^www\.astroneerbingo\.space$ [NC]
+#RewriteRule ^(.*)$ https://astroneerbingo.space/$1 [L,R=301]
+
+# redirect to HTTPS
+RewriteCond %{HTTPS} !on
+#RewriteRule (.*) https://astroneerbingo.space/$1 [QSA,L,R=301]
+
+
+# rewrite seed in URL
+
+# if request URI doesn't end by index.php
+RewriteCond %{REQUEST_URI} !^/index\.php
+
+# and the requested path and file doesn't directly match a physical file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# internally rewrite the request to the index.php script with the "seed" variable
+RewriteRule (.*) index.php?seed=$1
+
