@@ -1,4 +1,10 @@
 
+// prevent moving down the page when hitting the space bar
+document.addEventListener("keydown", function(event) {
+  if (event.keyCode == 32)
+    event.preventDefault();
+});
+
 // CARD
 
 // toggle green background of the card table cell

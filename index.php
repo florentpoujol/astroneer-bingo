@@ -56,9 +56,10 @@ $fullSeed = $seed."/".$configStr;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <title>Astroneer Bingo</title>
     <meta name="robots" content="index,follow">
-    <meta name="keywords" content="astroneer,bingo,mini-game,video game">
+    <meta name="keywords" content="astroneer,bingo,astroneer bingo,mini-game,video game,system era,pc,steam,early access,xbox,xbox one,windows 10,game preview">
     <meta name="description" content="Astroneer Bingo is a mini-game where you have to collect/print/research/find all items of a row, column or diagonal of an Astroneer's themed Bingo card as fast as possible.">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>

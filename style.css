@@ -3,6 +3,7 @@
 body {
   max-width: 900px;
   margin: auto;
+  padding: 10px;
   background: url("images/big_composite_bg_white.jpg") center top no-repeat fixed;
   font-size: 1.1em;
   font-family: Calibri, Arial, serif;
@@ -38,6 +39,9 @@ td img {
   margin-right: 10px;
 }
 
+#build_card_text {
+  margin-left: 140px;
+}
 
 #configuration td.selected {
   background: rgba(40,230,40,0.9);

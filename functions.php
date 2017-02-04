@@ -46,6 +46,8 @@ function getItemPool($configStr = "") {
 
         // by now, $configStr is a long "binary" string
         // ie: 1111111001100000011111111111110000000100011000011111000100
+        // note that the binary string may be shorter than the number of items in existance
+        // all missing items from the binary string  are considered as not selected
 
         $configArray = str_split($configStr);
         $itemNamesById = getItemNamesById();
@@ -86,6 +88,7 @@ function getConfigStr($itemPool) {
     foreach ($itemNamesById as $itemName) {
         $configStr .= (int)in_array($itemName, $itemPool); // "0" or "1"
     }
+    $configStr = rtrim($configStr, "0"); // remove trailing 0s to slightly shorten the string
 
     // $configStr is now a big "binary" string
     // ie: 1111111001100000011111111111110000000100011000011111000100

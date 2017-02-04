@@ -3,18 +3,13 @@
 
         <h2>Card</h2>
 
-        <p>
-            Seed for this card: <strong><?php echo $fullSeed; ?></strong><br>
-            Share this seed or directly <strong><a href="http://astroneerbingo.space/index.php?seed=<?php echo $fullSeed; ?>">this link</a></strong> for others to play the same card !
-        </p>
-
-        <p>
-            <form target="" method="post">
-                Or enter your own seed: 
-                <input type="text" name="seed" placeholder="Enter something like 123456789/abcdefghijklmnop" size="40" required >  <!-- pattern="[0-9]{1,}/[a-z0-9]{1,}" -->
-                <input type="submit" name="generate_from_seed" value="Build card from this seed">
-            </form>
-        </p>
+        
+        <form target="" method="post">
+            Seed for this card: <input type="text" name="seed" placeholder="Enter something like 123456789/abcdefghijklmnop" size="40" required value="<?php echo $fullSeed; ?>"> <br>
+            <span id="build_card_text"><strong>or update this seed and </strong><input type="submit" name="generate_from_seed" value="build a new card"></span> <br>
+            Share this seed or directly <strong><a href="http://astroneerbingo.space/index.php?seed=<?php echo $fullSeed; ?>">this link</a></strong> for others to play the same card ! <br>
+            <br>
+        </form>
 
         <table id="card">
 <?php
