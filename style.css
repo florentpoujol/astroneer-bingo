@@ -3,10 +3,16 @@ body {
   background: url("images/big_composite_bg_white.jpg") center top no-repeat fixed;
 }
 
-
-#build_card_text {
-  margin-left: 140px;
+hr {
+  margin-bottom: 10px;
+  /*border: 1px solid #eee;
+  border-radius: 5px;
+  height: 2px;
+  background: #eee;
+  width: 80%;*/
 }
+
+
 #card td {
   border: 1px solid rgb(50,50,50);
   padding: 10px;
@@ -39,7 +45,7 @@ body {
 }
 #timer #display {
   font-size: 3em;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 #timer button {
@@ -56,42 +62,41 @@ body {
 
 
 
-#configuration .flex-container {
+
+#item-pool .flex-container {
   display: flex;
   flex-wrap: wrap;
 }
 
-#configuration .panel {
+#item-pool .panel {
   margin-bottom: 10px;
 }
 
-#configuration .panel-heading:hover {
+#item-pool .panel-heading:hover {
   text-decoration: underline;
 }
 
-
-
-#configuration .config-item {
+#item-pool .config-item {
   padding: 8px;
   padding-bottom: 0px;
   margin: 4px;
   background: rgb(230,230,230);
 }
-#configuration .config-item.selected {
+#item-pool .config-item.selected {
   /*background: rgba(40,230,40,0.9);*/
   background: rgb(70,230,70);
   /*background: rgba(0,150,255,0.7);*/
   border-shadow
 }
 
-#configuration input[type=checkbox] {
+#item-pool input[type=checkbox] {
   position: relative;
   top: -27px;
   left: 8px;
   transform: scale(1.5);
 }
 
-#configuration label span {
+#item-pool label span {
   position: relative;
   left: -17px;
   margin-right: -17px;

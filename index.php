@@ -3,9 +3,10 @@ require_once "data.php";
 require_once "functions.php";
 
 // init
-$seed = mt_rand();
+$seed = mt_rand(1, 999999);
+$randmax = 2147483647;
 $configStr = "";
-$seedSeparatorChar = "-";
+$seedSeparatorChar = "@";
 $items = array_keys($things);
 $itemPool = getItemPool(true); // items that have been chosen by the user to (maybe) go on the card.  true == use default items
 $cardItems = []; // items that have been randomly selected from the pool for the cards
@@ -26,33 +27,50 @@ for ($i=0; $i < count($items); $i++) {
 
 $SEOIndex = "index";
 // seed may be transmitted through the URL
-if (isset($_GET["seed"])) {
-    $_POST["generate_from_seed"] = "";
-    $_POST["seed"] = $_GET["seed"];
-    $SEOIndex = "noindex";
-}
+if (isset($_GET["seed"]) && !isset($_POST["generate_from_config"])) {
 
-// process POST
-if (isset($_POST["generate_from_seed"])) {
     $fullSeed = trim($_POST["seed"]);
     if ($fullSeed !== "") {
+
         $char = $seedSeparatorChar;
         if (strpos($fullSeed, "/") !== false)
             $char = "/";
-        $seeds = explode($char, $fullSeed);
-        $seed = $seeds[0];
-        $configStr = $seeds[1];
-    }
+        if (strpos($fullSeed, "-") != false)
+            $char = "-";
 
-    $itemPool = getItemPool($configStr); // get selected items from the configStr
+        $seedParts = explode($char, $fullSeed);
+        $seed = intval($seedParts[0]);
+
+        $configStr = $seedParts[1];
+        $itemPool = getItemPool($configStr); // get selected items from the configStr
+
+        if (isset($seedParts[2]))
+            $rows = intval($seedParts[2]);
+
+        $SEOIndex = "noindex";
+    }
 }
 elseif (isset($_POST["generate_from_config"])) {
+    $seed = intval($_POST["random_seed"]);
+    if ($seed <= 0)
+        $seed = mt_rand(0, 999999);
+
     $itemPool = getItemPool(); // get selected items from the form ($_POST);
+
+    $rows = intval($_POST["cardSize"]);
 }
 
+if ($rows < 2) $rows = 2;
+if ($rows > 9) $rows = 9;
+$cols = $rows;
+$cardSize = $rows * $cols;
 $cardItems = generateCardItems($itemPool, $cardSize, $seed);
+
 $configStr = getConfigStr($itemPool);
+
 $fullSeed = $seed.$seedSeparatorChar.$configStr;
+if ($rows !== 5)
+    $fullSeed .= $seedSeparatorChar.$rows;
 
 ?>
 <!DOCTYPE html>

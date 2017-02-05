@@ -64,16 +64,18 @@ $("#stop-btn").on("click", function(event) {
 
 var bingoTime = "";
 var bingoTimeElt = $("#bingo-time");
+var rows = $("#card tr").length;
 
 function isItBingoYet() {
   var bingo = false;
   var directions = ["row", "col", "diag"];
   for (var dir of directions) {
-    if (dir === "diag") $max = 2;
-    else $max = 5;
-    for (var i = 1; i <= $max; i++) {
+    var maxId = rows;
+    if (dir === "diag") maxId = 2;
+
+    for (var i = 1; i <= maxId; i++) {
       var count = $("#card ."+dir+i+".selected").length;
-      if (count === 5)
+      if (count === rows)
         return true
     }
   };
@@ -88,6 +90,7 @@ $("#card td").each(function(i, elt) {
 
     $(td).toggleClass("selected");
 
+    // check for bingo
     if (bingoTime === "" && isItBingoYet()) {
       var min = time.min+"";
       if (min.length === 1)
@@ -103,7 +106,7 @@ $("#card td").each(function(i, elt) {
 });
 
 
-// CONFIGURATION / ITEM POOL
+// ITEM POOL
 
 // sitch + and - signs
 $(".panel-heading").each(function(i, title) {
@@ -121,14 +124,13 @@ $(".panel-heading").each(function(i, title) {
 });
 
 function updateItemPoolSize() {
-  var count = $("#configuration input[type=checkbox]:checked").length;
-  $("#item-pool-count").text(count);
+  var count = $("#item-pool input[type=checkbox]:checked").length;
+  $("#item-pool-size").text(count);
 }
 
 
 // toggle selected state of the items
-$("#configuration input[type=checkbox]").each(function(i, box) {
-  // $(box).hide();
+$("#item-pool input[type=checkbox]").each(function(i, box) {
   $(box).on("change", function(event) {
     var div = $(event.target.parentNode.parentNode); // first parentNode is <label>, second is div
     if (div.hasClass("selected"))
@@ -140,3 +142,16 @@ $("#configuration input[type=checkbox]").each(function(i, box) {
   });
 });
 updateItemPoolSize();
+
+
+// update the minimum items that must be in the pool based on the card size
+var cardSizeSpan = $("#card-size");
+var cardSizeInput = $("input[name=cardSize]");
+
+function updateCardSize() {
+  var size = $(cardSizeInput).val()
+  $(cardSizeSpan).text(size * size);
+}
+updateCardSize();
+
+cardSizeInput.on("change", updateCardSize);

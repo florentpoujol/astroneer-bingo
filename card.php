@@ -1,18 +1,20 @@
     <hr>
 
-    <section class="row">
-        <h2>Card</h2>
+    <section class="row" id="card-anchor">
+        <h2>Card <small>for seed</small> <?php echo $fullSeed; ?></h2>
 
-        <form target="" method="post">
-            Seed for this card: <input type="text" name="seed" placeholder="Enter something like 123456789/abcdefghijklmnop" size="40" required value="<?php echo $fullSeed; ?>"> <br>
-            <span id="build_card_text"><strong>or update this seed and </strong><input type="submit" name="generate_from_seed" value="build a new card" class="btn btn-primary"></span> <br>
-            Share this seed or directly <strong><a href="http://astroneerbingo.space/index.php?seed=<?php echo $fullSeed; ?>" rel="nofollow">this link</a></strong> for others to play the same card ! <br>
-            <br>
-        </form>
+        <p>
+            Share this seed or directly <strong><a href="http://astroneerbingo.space/<?php echo $fullSeed; ?>" rel="nofollow">this link</a></strong> for others to play the same card.<br>
+            You can click on items to mark them as completed and use the timer below to track time. <br>
+            The time to Bingo will be automatically displayed whever detected.
+        </p>
 
-        You can click on items to mark them as completed and use the timer below to track time.
-        <table id="card" class="">
+        <table id="card">
 <?php
+$diag2Cols = []; // in order column ids (for each rows) at which
+for ($i = $rows; $i > 0 ; $i--)
+    $diag2Cols[] = $i;
+
 for ($rowI = 1; $rowI <= $rows; $rowI++) {
     $rowClass = "row".$rowI;
 ?>
@@ -26,14 +28,13 @@ for ($rowI = 1; $rowI <= $rows; $rowI++) {
             $diag1Class = "diag1";
 
         $diag2Class = "";
-        if (
-            ($rowI === 1 && $colI === 5) ||
-            ($rowI === 2 && $colI === 4) ||
-            ($rowI === 3 && $colI === 3) ||
-            ($rowI === 4 && $colI === 2) ||
-            ($rowI === 5 && $colI === 1)
-        )
-            $diag2Class = "diag2";
+        if (isset($diag2Cols[0])) {
+            $diag2Col = $diag2Cols[0];
+            if ($diag2Col === $colI) {
+                array_shift($diag2Cols);
+                $diag2Class = "diag2";
+            }
+        }
 ?>
                 <td class='<?php echo "$rowClass $colClass $diag1Class $diag2Class"; ?>'>
 <?php
