@@ -33,7 +33,9 @@ foreach ($itemsByCategory as $cat => $catItems) {
     foreach ($catItems as $itemId => $itemName) {
         $item = $things[$itemName];
 
-        $url = $item["url"];
+        $url = "";
+        if (isset($item["url"]))
+            $url = $item["url"];
         if ($url === "")
             $url = "images/$itemName.jpg";
         else

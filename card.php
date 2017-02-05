@@ -42,7 +42,9 @@ for ($rowI = 1; $rowI <= $rows; $rowI++) {
             $itemName = array_shift($cardItems);
             $item = $things[$itemName];
 
-            $url = $item["url"];
+            $url = "";
+            if (isset($item["url"]))
+                $url = $item["url"];
             if ($url === "")
                 $url = "images/$itemName.jpg";
             else
