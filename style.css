@@ -76,6 +76,14 @@ hr {
   text-decoration: underline;
 }
 
+#item-pool .toggle-category-link {
+  display: none;
+  /* revealed by JS */
+}
+#item-pool .toggle-category-link:hover {
+  text-decoration: underline;
+}
+
 #item-pool .config-item {
   padding: 8px;
   padding-bottom: 0px;

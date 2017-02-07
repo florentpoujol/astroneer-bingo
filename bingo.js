@@ -123,21 +123,64 @@ $(".panel-heading").each(function(i, title) {
   });
 });
 
+
+// select/unselect category link
+function updateCategorySelectedState(category, select) {
+  var items = $("#"+category+" .config-item");
+
+  if (select == null) {
+    var state = $(items[0]).find("input")[0].checked;
+    if (state != null) // prevent potential infinite loop
+      updateCategorySelectedState(category, !state);
+  }
+  else {
+    items.each(function(i, item) {
+      selectItem($(item), select);
+    })
+  }
+}
+
+var links = $(".toggle-category-link");
+links.each(function(i, link) {
+  $(link).show();
+  $(link).on("click", function(event) {
+    var _link = $(event.target);
+    var category = _link.attr("category");
+    updateCategorySelectedState(category);
+    updateItemPoolSize();
+  })
+});
+
+
 function updateItemPoolSize() {
   var count = $("#item-pool input[type=checkbox]:checked").length;
   $("#item-pool-size").text(count);
 }
 
+// elt must be div.config-item
+function selectItem(elt, select) {
+  if (select != null) {
+    if (select === true) {
+      elt.find("input")[0].checked = true;
+      if (elt.hasClass("selected") === false)
+        elt.addClass("selected");
+    }
+    else {
+      elt.find("input")[0].checked = false;
+      if (elt.hasClass("selected"))
+        elt.removeClass("selected");
+    }
+  }
+  else // toggle
+    select(elt, ! elt.find("input")[0].checked);
+}
 
-// toggle selected state of the items
+
+// toggle "selected" state of the items when clicking on the checkbox
 $("#item-pool input[type=checkbox]").each(function(i, box) {
   $(box).on("change", function(event) {
-    var div = $(event.target.parentNode.parentNode); // first parentNode is <label>, second is div
-    if (div.hasClass("selected"))
-      div.removeClass("selected");
-    else
-      div.addClass("selected");
-
+    var div = $(event.target.parentNode.parentNode); // first parentNode is <label>, second is div.config-tiem
+    selectItem(div, event.target.checked); // this actually just update the "selected" class on the div.config-item
     updateItemPoolSize();
   });
 });
