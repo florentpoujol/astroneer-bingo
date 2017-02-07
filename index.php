@@ -2,6 +2,7 @@
 require_once "data.php";
 require_once "functions.php";
 
+
 // init
 $seed = mt_rand(1, 999999);
 $randmax = 2147483647;
@@ -29,7 +30,7 @@ $SEOIndex = "index";
 // seed may be transmitted through the URL
 if (isset($_GET["seed"]) && !isset($_POST["generate_from_config"])) {
 
-    $fullSeed = trim($_POST["seed"]);
+    $fullSeed = trim($_GET["seed"]);
     if ($fullSeed !== "") {
 
         $char = $seedSeparatorChar;

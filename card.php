@@ -41,6 +41,9 @@ for ($rowI = 1; $rowI <= $rows; $rowI++) {
         // var_dump($cardItems);
         if (count($cardItems) > 0) {
             $itemName = array_shift($cardItems);
+            if ($itemName === null)
+                break;
+            
             $item = $things[$itemName];
 
             $url = "";

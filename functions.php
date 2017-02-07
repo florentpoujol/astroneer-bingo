@@ -107,18 +107,22 @@ function getConfigStr($itemPool) {
 
 
 function generateCardItems($itemPool, $cardSize, $seed) {
-    $cardItems = [];
-    if (count($itemPool) >= $cardSize) {
-        mt_srand($seed);
-        mt_rand(); mt_rand(); mt_rand();
+    if (count($itemPool) < $cardSize)
+        echo "Error: not enough items in the item pool<br>";
+        // throw new Exception("Error: not enough items in the item pool, something must be wrong your seed.");
 
-        for ($i = 0; $i < $cardSize; $i++) {
-            $rand = mt_rand(0, count($itemPool)-1);
-            $item = array_splice($itemPool, $rand, 1)[0];
-            $cardItems[] = $item;
-        }
+    $cardItems = [];
+    mt_srand($seed);
+    mt_rand(); mt_rand(); mt_rand();
+
+    for ($i = 0; $i < $cardSize; $i++) {
+        $itemCount = count($itemPool);
+        if ($itemCount === 0)
+            break;
+
+        $rand = mt_rand(0, $itemCount-1);
+        $item = array_splice($itemPool, $rand, 1)[0];
+        $cardItems[] = $item;
     }
-    else
-        throw new Exception("Error: not enough items in the item pool, something must be wrong your seed.");
     return $cardItems;
 }
