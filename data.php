@@ -4,14 +4,12 @@ $things = [
   "compound" => [
     "id" => 0,
     "actions" => ["collect_a_stack"],
-    "url" => "/8/83/CompoundResource.png",
     "category" => "resources",
     "selected_by_default" => false,
   ],
   "resin" => [
     "id" => 1,
     "actions" => ["collect_a_stack"],
-    "url" => "/c/c3/ResinResource.png",
     "category" => "resources",
     "selected_by_default" => false,
   ],
@@ -80,14 +78,12 @@ $things = [
   "hematite" => [
     "id" => 11,
     "actions" => ["collect_a_stack"],
-    "url" => "/a/a5/HematiteResource.png",
     "category" => "resources",
     "selected_by_default" => false,
   ],
   "astronium" => [
     "id" => 12,
     "actions" => ["collect_a_stack"],
-    "url" => "/5/5a/AstroniumResource.png",
     "category" => "resources",
     "selected_by_default" => false,
   ],
@@ -101,7 +97,6 @@ $things = [
   "power" => [
     "id" => 14,
     "actions" => ["collect_a_stack"],
-    "url" => "/b/b3/PowerResource.png",
     "category" => "resources",
     "selected_by_default" => false,
   ],
@@ -199,7 +194,6 @@ $things = [
   "small_solar_panel" => [
     "id" => 29,
     "actions" => ["print"],
-    "url" => "/2/25/Solar.png",
     "category" => "backpack_items",
     "selected_by_default" => false,
   ],
@@ -365,7 +359,6 @@ $things = [
   "oxygen_spire" => [
     "id" => 55,
     "actions" => ["collect_from_fountain"],
-    "url" => "/3/3d/Oxygen_Spire.jpg",
     "category" => "resource_fountains",
     "selected_by_default" => false,
   ],
@@ -395,14 +388,12 @@ $things = [
   "research_item_sphere_red_hair" => [
     "id" => 59,
     "actions" => ["do_research"],
-    "url" => "/e/e7/Research_red_ball_hair.jpg",
     "category" => "research_items",
     "selected_by_default" => false,
   ],
-  "research_item_sphere_red_green" => [
+  "research_item_sphere_green_hair" => [
     "id" => 60,
     "actions" => ["do_research"],
-    "url" => "/7/7f/Research_green_ball_hair.jpg",
     "category" => "research_items",
     "selected_by_default" => false,
   ],
@@ -514,7 +505,6 @@ $things = [
   "research_item_cuboid_red_green_part" => [
     "id" => 76,
     "actions" => ["do_research"],
-    "url" => "/4/4c/Research_Pod.png",
     "category" => "research_items",
     "selected_by_default" => false,
   ],
@@ -562,7 +552,6 @@ $things = [
   "worm" => [
     "id" => 82,
     "actions" => ["get_killed"],
-    "url" => "/6/60/Hazard-Worm.jpg",
     "category" => "hazards",
     "selected_by_default" => false,
   ],
