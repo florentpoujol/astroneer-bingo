@@ -108,6 +108,10 @@ $("#card td").each(function(i, elt) {
 
 // ITEM POOL
 
+// activate first tab
+$("#first-tab-row a:first").tab('show');
+$("#second-tab-row a:first").tab('show');
+
 // sitch + and - signs
 $(".panel-heading").each(function(i, title) {
   $(title).on("click", function(event) {

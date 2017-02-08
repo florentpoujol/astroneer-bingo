@@ -79,9 +79,23 @@ hr {
 #item-pool .toggle-category-link {
   display: none;
   /* revealed by JS */
+  margin-left: 8px;
 }
 #item-pool .toggle-category-link:hover {
   text-decoration: underline;
+}
+
+#item-pool .nav-tabs li {
+  margin-right: 5px;
+}
+#item-pool .nav-tabs li:not(.active) a {
+  background: rgb(230,230,230);
+}
+#item-pool .tab-pane {
+  background: white;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-top: 0;
 }
 
 #item-pool .config-item {

@@ -8,7 +8,7 @@
             <input type="text" name="seed" placeholder="Something like 12345@6x56qw4gt" size="30"> <input type="submit" value="Build the card for that seed" class="btn btn-primary">
         </form>
 
-        <p>Or build a newcard below :</p>
+        <p>Or build a new card below:</p>
 
         <form action="." method="post">
             <br>
@@ -35,47 +35,73 @@
                     Must be minimum <span id="card-size"></span>.
                 </p>
 
+                <ul class="nav nav-tabs" id="first-tab-row" role="tablist">
 <?php
+$setCategories = [];
 foreach ($itemsByCategory as $cat => $catItems) {
+    if ($i >= 7) break;
+    $i++;
+    $setCategories[] = $cat;
 ?>
-                <div class='panel panel-default'>
-                    <div class='panel-heading' data-toggle='collapse' data-target='#<?php echo $cat; ?>'><?php echo $cat; ?> <span class="glyphicon glyphicon-plus"></span></div>
+                    <li role="presentation" class=""><a href="#<?php echo $cat; ?>" aria-controls="<?php echo $cat; ?>" role="tab" data-toggle="tab"><?php echo $cat; ?></a></li>
 
-                    <div id="<?php echo $cat; ?>" class="collapse panel-body">
-                        <span class="toggle-category-link" category="<?php echo $cat; ?>">Select/unselect all</span>
-                        <div class="flex-container">
-<?php
-    foreach ($catItems as $itemId => $itemName) {
-        $item = $things[$itemName];
-
-        $url = "";
-        if (isset($item["url"]))
-            $url = $item["url"];
-        if ($url === "")
-            $url = "images/$itemName.jpg";
-        else
-            $url = $wikiCDNUrl."/".ltrim($url, "/");
-
-        $checked = in_array($itemName, $itemPool) ? "checked" : "";
-        $selected = "";
-        if ($checked) $selected = "selected";
-?>
-                            <div class="config-item <?php echo $selected; ?>">
-                                <label>
-                                    <img src='<?php echo $url; ?>' title='<?php echo $itemName; ?>' width='100px' height='100px'><br>
-                                    <input type='checkbox' name='<?php echo $itemName; ?>' <?php echo $checked; ?>>
-                                    <span><?php echo substr($itemName, 0, 20); ?></span>
-                                </label>
-                            </div>
-<?php
-    }
-?>
-                        </div> <!-- end flex-container -->
-                    </div> <!-- end panel-body -->
-                </div> <!-- end panel -->
 <?php
 } // end foreach itemsByCategory
 ?>
+                </ul>
+
+                <div class="tab-content">
+<?php
+foreach ($itemsByCategory as $cat => $catItems) {
+    if (in_array($cat, $setCategories) === false)
+        continue;
+?>
+                    <div role="tabpanel" class="tab-pane" id="<?php echo $cat; ?>">
+<?php
+require "item-pool-category.php";
+?>
+                    </div> <!-- end div.tab-pane  -->
+<?php
+} // end foreach itemsByCategory
+?>
+                </div>
+                <br>
+
+<?php
+// ============================================================================
+// repeat almost the same code for the remaining categories
+?>
+
+                <ul class="nav nav-tabs" id="second-tab-row" role="tablist">
+<?php
+foreach ($itemsByCategory as $cat => $catItems) {
+    if (in_array($cat, $setCategories))
+        continue;
+?>
+                    <li role="presentation" class=""><a href="#<?php echo $cat; ?>" aria-controls="<?php echo $cat; ?>" role="tab" data-toggle="tab"><?php echo $cat; ?></a></li>
+
+<?php
+} // end foreach itemsByCategory
+?>
+                </ul>
+
+                <div class="tab-content">
+<?php
+foreach ($itemsByCategory as $cat => $catItems) {
+    if (in_array($cat, $setCategories))
+        continue;
+?>
+                    <div role="tabpanel" class="tab-pane" id="<?php echo $cat; ?>">
+<?php
+require "item-pool-category.php";
+?>
+                    </div> <!-- end div.tab-pane  -->
+<?php
+} // end foreach itemsByCategory
+?>
+                </div>
+
+
             </div> <!-- end #item-pool -->
 
 
