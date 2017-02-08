@@ -3,9 +3,16 @@
     <section class="row">
         <h2>Create your own card</h2>
 
+        <form action="." method="GET">
+            If you have copied a seed from somewhere, you can paste it here:
+            <input type="text" name="seed" placeholder="Something like 12345@6x56qw4gt" size="30"> <input type="submit" value="Build the card for that seed" class="btn btn-primary">
+        </form>
+
+        <p>Or build a newcard below :</p>
+
         <form action="." method="post">
             <br>
-            <input type="submit" name="generate_from_config" value="Build a new card with this configuration" class="btn btn-primary">
+            <input type="submit" name="generate_from_config" value="Build a new card with this configuration below" class="btn btn-primary">
             <br>
 
 

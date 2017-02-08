@@ -42,11 +42,13 @@ if (isset($_GET["seed"]) && !isset($_POST["generate_from_config"])) {
         $seedParts = explode($char, $fullSeed);
         $seed = intval($seedParts[0]);
 
-        $configStr = $seedParts[1];
-        $itemPool = getItemPool($configStr); // get selected items from the configStr
+        if (isset($seedParts[1])) {
+            $configStr = $seedParts[1];
+            $itemPool = getItemPool($configStr); // get selected items from the configStr
 
-        if (isset($seedParts[2]))
-            $rows = intval($seedParts[2]);
+            if (isset($seedParts[2]))
+                $rows = intval($seedParts[2]);
+        }
 
         $SEOIndex = "noindex";
     }
