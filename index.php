@@ -40,7 +40,9 @@ if (isset($_GET["seed"]) && !isset($_POST["generate_from_config"])) {
             $char = "-";
 
         $seedParts = explode($char, $fullSeed);
-        $seed = intval($seedParts[0]);
+        $_seed = intval($seedParts[0]);
+        if ($_seed >= 0) // let the random seed when the one specified is < 0
+            $seed = $_seed;
 
         if (isset($seedParts[1])) {
             $configStr = $seedParts[1];
@@ -116,9 +118,13 @@ if ($rows !== 5)
                 <h2>Create and share your own cards</h2>
 
                 <p>
-                    So that it's actually enjoyable in the context of Astroneer, <!-- the size of the cards as well as --> the pool of items that may appear on them is completely configurable below. <br>
+                    Each card is linked to a unique <i>seed</i>, which looks something like <i>435868@6x56qw4ugt9z717</i> or <i>34195@a1e20isavx37@4</i> for instance. The seed represents a randomness factor, the item pool and the size of the card.<br>
                     <br>
-                    Each card is linked to a unique <i>seed</i>, which represents both its randomness factor and its item pool. You just need to share the seed and anyone can reconstruct and play the exact same card. <br>
+                    You just need to share the seed and anyone can rebuild and play the exact same card.<br>
+                    Each card will also give you a direct link to it so that sharing it is super easy. <br>
+                    <br>
+                    The 3 parameters represented by the seed are completely configurable below. You can create you own cards to fit your play style or the difficulty you desire.
+                    <br>
                 </p>
             </div>
             <div class="col-sm-6">

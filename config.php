@@ -110,7 +110,7 @@ require "item-pool-category.php";
             <input type="number" name="cardSize" value="<?php echo $rows; ?>" min="2" max="9"> rows and columns.
             Minimum 2, maximum 9. 5x5 is  the default and won't appear in the actual card seed. <br>
             <br>
-            <input type="submit" name="generate_from_config" value="Build a new card with this configuration" class="btn btn-primary">
+            <input type="submit" name="generate_from_config" value="Build a new card with this configuration above" class="btn btn-primary">
 
         </form>
     </section>

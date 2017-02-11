@@ -66,7 +66,7 @@ function getItemPool($configStr = "") {
     else {
         foreach ($things as $itemName => $item) {
             if ($configStr === true) {
-                if (isset($item["selected_by_default"]) && $item["selected_by_default"] === true)
+                if (isset($item["in_default_item_pool"]) && $item["in_default_item_pool"] === true)
                     $itemPool[] = $itemName;
             }
 
