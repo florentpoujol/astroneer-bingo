@@ -106,6 +106,25 @@ $("#card td").each(function(i, elt) {
 });
 
 
+// prevent default behavior of the GET forms
+// beatify the URL by removing the "?seed=" part
+// and let URL rewriting do the job
+$(".get-form-submit").each(function(i, form) {
+  $(form).on("submit", function(event) {
+    event.preventDefault();
+    var hostname = window.location.hostname; // localhost or astroneerbingo.space
+    var port = "";
+    var pathname = "/";
+    if (hostname === "localhost") {
+      port = ":8080";
+      pathname = "/astroneer-bingo/";
+    }
+    var seed = $(form).find("input[name=seed]").val().trim();
+    var destination = window.location.protocol+"//"+hostname+port+pathname+seed;
+    window.location.replace(destination);
+  })
+});
+
 // ITEM POOL
 
 // activate first tab
