@@ -1,4 +1,12 @@
 <?php
+$presets = [
+  "no_research" => ["itemPool" => "b30osqqtwx63tbi3uekf"],
+  "random_research" => [
+    "itemPool" => "a1e20isbny6r",
+    "rows" => 4
+  ]
+];
+
 $things = [
   // resources
   "compound" => [

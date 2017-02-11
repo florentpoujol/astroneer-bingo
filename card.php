@@ -4,7 +4,7 @@
         <h2>Card <small>for seed</small> <?php echo $fullSeed; ?></h2>
 
         <p>
-            Share this seed or directly <strong><a href="http://astroneerbingo.space/<?php echo $fullSeed; ?>" rel="nofollow">this link</a></strong> for others to play the same card.<br>
+            Share this seed or directly <strong><a href="<?php echo $fullSeed; ?>" rel="nofollow">this link</a></strong> for others to play the same card.<br>
             You can click on items to mark them as completed and use the timer below to track time. <br>
             The time to Bingo will be automatically displayed whever detected.
         </p>

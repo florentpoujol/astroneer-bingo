@@ -3,12 +3,47 @@
     <section class="row">
         <h2>Create your own card</h2>
 
-        <form action="." method="GET">
-            If you have copied a seed from somewhere, you can paste it here:
-            <input type="text" name="seed" placeholder="Something like 12345@6x56qw4gt" size="30"> <input type="submit" value="Build the card for that seed" class="btn btn-primary">
-        </form>
+        <ul>
+            <li>
+                <form action="." method="get"  class="get-form-submit">
+<?php
+$fullRandomSeed = mt_rand(0, 999999).$seedSeparatorChar.$configStr;
+if ($rows !== 5)
+    $fullRandomSeed .= $seedSeparatorChar.$rows;
+?>
+                    <input type="hidden" name="seed" value="<?php echo $fullRandomSeed; ?>">
+                    <input type="submit" value="Just get a new random card with the same item pool and size" class="btn btn-primary ">
+                </form>
+            </li>
 
-        <p>Or build a new card below:</p>
+            <li>
+                <form action="." method="get" class="get-form-submit">
+                    If you have copied a seed from somewhere, you can paste it here:
+                    <input type="text" name="seed" placeholder="Something like 12345@6x56qw4gt" size="30"> <input type="submit" value="Build the card for that seed" class="btn btn-primary">
+                </form>
+            </li>
+
+             <li>
+                <form action="." method="post">
+                    Select a preset: 
+                    <input type="hidden" name="preset">
+                    <ul id="config-presets">
+                        <li>
+                            <input type="submit" name="no_research" value="No research needed" class="btn btn-primary"> All items you can print without doing research. Also includes the most common discoveries and research items themselves.
+                        </li>
+                        <li>
+                            <input type="submit" name="random_research" value="Super Random Research" class="btn btn-primary"> All ressources and items you can get as the result of research, in a 4x4 card.
+                        </li>
+                        <li>
+                            <input type="submit" name="preset_default" value="Default pool" class="btn btn-primary">
+                        </li>
+                    </ul>
+                </form>
+            </li>
+
+            <li>Or build a whole new card below:</li>
+        </ul>
+
 
         <form action="." method="post">
             <br>

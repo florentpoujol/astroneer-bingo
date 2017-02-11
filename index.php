@@ -26,9 +26,20 @@ for ($i=0; $i < count($items); $i++) {
     $itemsByCategory[$category][] = $itemName;
 }
 
+
 $SEOIndex = "index";
+if (isset($_POST["preset"])) {
+    if (isset($_POST["no_research"]))
+        $itemPool = getItemPool($presets["no_research"]["itemPool"]);
+
+    else if (isset($_POST["random_research"])) {
+        $itemPool = getItemPool($presets["random_research"]["itemPool"]);
+        $rows = $presets["random_research"]["rows"];
+    }
+}
+
 // seed may be transmitted through the URL
-if (isset($_GET["seed"]) && !isset($_POST["generate_from_config"])) {
+else if (isset($_GET["seed"]) && !isset($_POST["generate_from_config"])) {
 
     $fullSeed = trim($_GET["seed"]);
     if ($fullSeed !== "") {

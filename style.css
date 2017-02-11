@@ -61,7 +61,9 @@ hr {
 
 
 
-
+#config-presets li {
+  margin-bottom: 5px;
+}
 
 #item-pool .flex-container {
   display: flex;
