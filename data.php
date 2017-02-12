@@ -1,6 +1,6 @@
 <?php
 $presets = [
-  "no_research" => ["itemPool" => "b30osqqtwx63tbi3uekf"],
+  "no_research" => ["itemPool" => "b2mnotws8h63pv0fiskf7"],
   "random_research" => [
     "itemPool" => "a1e20isbny6r",
     "rows" => 4
@@ -510,7 +510,7 @@ $things = [
     "category" => "research_items",
   ],
   "research_item_onion_purple" => [
-    "id" => 104,
+    "id" => 105,
     "actions" => ["do_research"],
     "category" => "research_items",
   ],
@@ -564,17 +564,17 @@ $things = [
     "category" => "hazards",
   ],
   "suffocation" => [
-    "id" => 108,
+    "id" => 107,
     "actions" => ["get_killed"],
     "category" => "hazards",
   ],
   "fall" => [
-    "id" => 109,
+    "id" => 108,
     "actions" => ["get_killed"],
     "category" => "hazards",
   ],
   "dynamite_explosion" => [
-    "id" => 110,
+    "id" => 109,
     "actions" => ["get_killed"],
     "category" => "hazards",
   ],
@@ -587,12 +587,24 @@ $things = [
     "in_default_item_pool" => true,
   ],
   "crashed_ship_2" => [
-    "id" => 105,
+    "id" => 106,
     "actions" => ["find"],
     "category" => "discoveries",
     "in_default_item_pool" => true,
   ],
   "crashed_ship_3" => [
+    "id" => 110,
+    "actions" => ["find"],
+    "category" => "discoveries",
+    "in_default_item_pool" => true,
+  ],
+  "crashed_ship_4" => [
+    "id" => 111,
+    "actions" => ["find"],
+    "category" => "discoveries",
+    "in_default_item_pool" => true,
+  ],
+  "crashed_ship_5" => [
     "id" => 112,
     "actions" => ["find"],
     "category" => "discoveries",
@@ -684,6 +696,7 @@ $things = [
   ],
 ];
 
-// next id: 112
+// next id: 113
+
 
 $wikiCDNUrl = "https://hydra-media.cursecdn.com/astroneer.gamepedia.com";

@@ -18,6 +18,17 @@ function getItemNamesById() {
     return $itemNamesById;
 }
 
+// display all item ids in order in an array
+// so that I can quickly find thee next id to use and missing ids (that happend)
+function checkThingsIds() {
+    global $things;
+    $ids = [];
+    foreach ($things as $thing) {
+        $ids[] = $thing["id"];
+    }
+    sort($ids);
+    var_dump($ids);
+}
 
 /*
 argument values :
@@ -37,11 +48,13 @@ function getItemPool($configStr = "") {
         $configStr = "";
         foreach($chunks as $chunk) {
             $bin = base_convert($chunk, 36, 2);
+
+            // remove the added leading 1
+            // do not use ltrim($bin, "1") because it will remove all the leading ones
             $a = str_split($bin);
             array_shift($a);
-            $bin = implode($a);
-            // do not use ltrim($bin, "1") because it will remove all the leading ones
-            $configStr .= $bin; // remove the added leading 1
+
+            $configStr .= implode($a);
         }
 
         // by now, $configStr is a long "binary" string
@@ -51,7 +64,7 @@ function getItemPool($configStr = "") {
 
         $configArray = str_split($configStr);
         $itemNamesById = getItemNamesById();
-        // loop throught item names in ordder and if they are selected "1" in the configStr, add them to the pol
+        // loop throught item names in order and if they are selected "1" in the configStr, add them to the pool
         foreach ($itemNamesById as $itemName) {
 
             if (isset($configArray[0])) {

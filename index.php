@@ -1,7 +1,7 @@
 <?php
 require_once "data.php";
 require_once "functions.php";
-
+// checkThingsIds();
 
 // init
 $seed = mt_rand(1, 999999);
