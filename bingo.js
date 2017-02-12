@@ -74,12 +74,23 @@ function isItBingoYet() {
     if (dir === "diag") maxId = 2;
 
     for (var i = 1; i <= maxId; i++) {
-      var count = $("#card ."+dir+i+".selected").length;
-      if (count === rows)
-        return true
+      var tds = $("#card ."+dir+i+".selected");
+      var count = tds.length;
+      if (count === rows) {
+        bingo = true;
+        updateBingoClass(tds);
+      }
     }
   };
-  return false;
+  return bingo;
+}
+
+function updateBingoClass(tds, bingo) {
+  tds.each(function(i, elt) {
+    elt = $(elt);
+    if (elt.hasClass("bingo") === false)
+      elt.addClass("bingo");
+  });
 }
 
 $("#card td").each(function(i, elt) {
@@ -89,9 +100,10 @@ $("#card td").each(function(i, elt) {
       td = td.parentNode;
 
     $(td).toggleClass("selected");
+    $(td).removeClass("bingo");
 
     // check for bingo
-    if (bingoTime === "" && isItBingoYet()) {
+    if (isItBingoYet() && bingoTime === "") {
       var min = time.min+"";
       if (min.length === 1)
         min = "0"+min;

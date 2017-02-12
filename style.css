@@ -26,10 +26,14 @@ hr {
 }
 
 #card td.selected {
-  background: rgb(70,230,70);
+  /*background: rgb(70,230,70);*/
+  background: rgb(255,220,0);
 }
 #card td.selected img {
   opacity: 0.5;
+}
+#card td.bingo {
+  background: rgb(70,230,70);
 }
 
 #card td span {
