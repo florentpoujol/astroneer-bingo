@@ -15,13 +15,18 @@
 
         $checked = in_array($itemName, $itemPool) ? "checked" : "";
         $selected = "";
-        if ($checked) $selected = "selected";
+        if ($checked)
+            $selected = "selected";
+
+        $debugItemName = $itemName;
+        if ($debug)
+            $debugItemName = $item["id"]."".$itemName;
 ?>
                             <div class="config-item <?php echo $selected; ?>">
                                 <label>
                                     <img src='<?php echo $url; ?>' title='<?php echo $itemName; ?>' width='100px' height='100px'><br>
                                     <input type='checkbox' name='<?php echo $itemName; ?>' <?php echo $checked; ?>>
-                                    <span><?php echo substr($itemName, 0, 20); ?></span>
+                                    <span><?php echo $debugItemName; ?></span>
                                 </label>
                             </div>
 <?php

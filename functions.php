@@ -15,6 +15,7 @@ function getItemNamesById() {
         if (isset($item["id"]))
             $itemNamesById[$item["id"]] = $itemName;
     }
+    ksort($itemNamesById);
     return $itemNamesById;
 }
 
@@ -37,10 +38,16 @@ argument values :
 - non-empty string > process the config string
 */
 function getItemPool($configStr = "") {
-    global $things;
+    global $things, $debug;
     $itemPool = [];
+    $itemNamesById = getItemNamesById();
 
     if (is_string($configStr) && strlen($configStr) > 0) {
+        if ($debug) {
+            echo "========================================<br>";
+            echo "getItemPool()<br>";
+            var_dump($configStr);
+        }
         // $configStr is a base36 string
         // ie: e13wu1ofc0wjqwgc70jyf0u8
 
@@ -48,7 +55,10 @@ function getItemPool($configStr = "") {
         $configStr = "";
         foreach($chunks as $chunk) {
             $bin = base_convert($chunk, 36, 2);
-
+            if ($debug) {
+                var_dump($chunk);
+                var_dump($bin);
+            }
             // remove the added leading 1
             // do not use ltrim($bin, "1") because it will remove all the leading ones
             $a = str_split($bin);
@@ -63,13 +73,18 @@ function getItemPool($configStr = "") {
         // all missing items from the binary string  are considered as not selected
 
         $configArray = str_split($configStr);
-        $itemNamesById = getItemNamesById();
+        if ($debug) var_dump(implode($configArray));
+        if ($debug) var_dump($itemNamesById);
         // loop throught item names in order and if they are selected "1" in the configStr, add them to the pool
         foreach ($itemNamesById as $itemName) {
 
             if (isset($configArray[0])) {
-                if ($configArray[0] === "1")
+                if ($configArray[0] === "1") {
                     $itemPool[] = $itemName;
+                    if ($debug) {
+                        var_dump($itemName);
+                    }
+                }
             }
             else
                 break;
@@ -77,7 +92,8 @@ function getItemPool($configStr = "") {
         }
     }
     else {
-        foreach ($things as $itemName => $item) {
+        foreach ($itemNamesById as $id => $itemName) {
+            $item = $things[$itemName];
             if ($configStr === true) {
                 if (isset($item["in_default_item_pool"]) && $item["in_default_item_pool"] === true)
                     $itemPool[] = $itemName;
@@ -120,13 +136,18 @@ function getConfigStr($itemPool) {
 
 
 function generateCardItems($itemPool, $cardSize, $seed) {
+    global $debug;
     if (count($itemPool) < $cardSize)
         echo "Error: not enough items in the item pool<br>";
-        // throw new Exception("Error: not enough items in the item pool, something must be wrong your seed.");
 
     $cardItems = [];
     mt_srand($seed);
     mt_rand(); mt_rand(); mt_rand();
+    if ($debug) {
+        echo "=======================<br>";
+        echo "generateCardItems()<br>";
+        var_dump($itemPool);
+    }
 
     for ($i = 0; $i < $cardSize; $i++) {
         $itemCount = count($itemPool);
@@ -134,6 +155,7 @@ function generateCardItems($itemPool, $cardSize, $seed) {
             break;
 
         $rand = mt_rand(0, $itemCount-1);
+        if ($debug) var_dump("0 ".$rand." ".($itemCount-1));
         $item = array_splice($itemPool, $rand, 1)[0];
         $cardItems[] = $item;
     }

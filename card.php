@@ -43,8 +43,9 @@ for ($rowI = 1; $rowI <= $rows; $rowI++) {
             $itemName = array_shift($cardItems);
             if ($itemName === null)
                 break;
-            
+
             $item = $things[$itemName];
+
 
             $url = "";
             if (isset($item["url"]))
@@ -60,6 +61,9 @@ for ($rowI = 1; $rowI <= $rows; $rowI++) {
                     $title .= " or ";
                 $title .= $value;
             }
+
+            if ($debug)
+                $itemName = $item["id"]." ".$itemName;
 ?>
                     <img src='<?php echo $url; ?>' title='<?php echo $title; ?>' alt='<?php echo $itemName; ?>' width='100px' height='100px'><br>
                     <span><strong><?php echo $itemName; ?></strong></span>

@@ -4,6 +4,8 @@ require_once "functions.php";
 // checkThingsIds();
 
 // init
+$debug = false;
+
 $seed = mt_rand(1, 999999);
 $randmax = 2147483647;
 $configStr = "";

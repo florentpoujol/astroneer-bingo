@@ -1,8 +1,8 @@
 <?php
 $presets = [
-  "no_research" => ["itemPool" => "b2mnotws8h63pv0fiskf7"],
+  "no_research" => ["itemPool" => "b2mnotwt0i6nvydvpvcwpc7"],
   "random_research" => [
-    "itemPool" => "a1e20isbny6r",
+    "itemPool" => "a1e20isavx9ykbz3uwow3",
     "rows" => 4
   ]
 ];
@@ -514,6 +514,16 @@ $things = [
     "actions" => ["do_research"],
     "category" => "research_items",
   ],
+  "research_item_yellow_mushroom_red_bits" => [
+    "id" => 113,
+    "actions" => ["do_research"],
+    "category" => "research_items",
+  ],
+  "research_item_green_ball_neon_stripe" => [
+    "id" => 114,
+    "actions" => ["do_research"],
+    "category" => "research_items",
+  ],
 
   // hazards
   "exploder" => [
@@ -696,7 +706,7 @@ $things = [
   ],
 ];
 
-// next id: 113
+// next id: 115
 
 
 $wikiCDNUrl = "https://hydra-media.cursecdn.com/astroneer.gamepedia.com";
